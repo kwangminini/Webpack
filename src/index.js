@@ -1,7 +1,8 @@
-const dog = [
-  { id: 1, name: "tom" },
-  { id: 2, name: "jerry" },
-  { id: 3, name: "john" },
-];
+function component() {
+  const element = document.createElement("div");
+  element.innerHTML = "Hello world";
 
-console.log("dog ::: ", dog);
+  return element;
+}
+
+document.body.appendChild(component());
