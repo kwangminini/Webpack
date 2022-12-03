@@ -1,1 +1,1 @@
-console.log("dog ::: ",[{id:1,name:"tom"},{id:2,name:"jerry"},{id:3,name:"john"}]);
+document.body.appendChild(function(){const e=document.createElement("div");return e.innerHTML="Hello world",e}());
