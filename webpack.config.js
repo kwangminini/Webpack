@@ -12,9 +12,17 @@ module.exports = {
         test: /\.css$/i,
         include: [path.resolve(__dirname, "src")],
         use: [
-          "style-loader",
+          {
+            loader: "style-loader",
+            options: {
+              injectType: "singletonStyleTag",
+            },
+          },
           {
             loader: "css-loader",
+            options: {
+              modules: true,
+            },
           },
         ],
       },
