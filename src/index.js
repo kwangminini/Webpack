@@ -1,4 +1,4 @@
-import "../index.css";
+import "./index.css";
 
 function component() {
   const element = document.createElement("div");
