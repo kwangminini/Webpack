@@ -1,9 +1,9 @@
 # Webpack5
-Study Webpack
+webpack Document에서 기본적인 컨셉을 이해하고, 내가 사용하는 혹은 자주 사용되는 모듈 및 기능들 공부하고 기록
 
 
 # concept
-## 웹팩은 모던 자바스크립트를 위한 정적 모듈 번들러이다.
+## 1. 웹팩은 모던 자바스크립트를 위한 정적 모듈 번들러이다.
 웹팩이 application을 처리할 때, 웹팩은 하나 혹은 다수의 entry point로부터 의존성 그래프를 만들고, 컨텐츠를 제공하는 정적 자산인 번들들로 프로젝트에 필요한 모든 모듈을 결합시킨다.
 버전 4 이후로, 프로젝트를 번들하기 위해 웹팩은 configuration file을 필요로하지 않는다.
 * Core Concept
@@ -13,6 +13,18 @@ Study Webpack
     * Plugins
     * Mode
     * Browser Compatibility
+## 2. Entry
+Entry point는 웹팩이 내부적으로 의존성 그래프를 그리기 위한 시작점 모듈로써 entry point와 직간접적으로 연결된 라이브러리와 모듈들을 찾는다.
+* Default Value : ```./src/index.js```
+* 커스터마이징 가능
+    * webpack.config.js 
+      ```
+      module.exports = {
+           entry: './path/to/my/entry/file.js',
+         }; 
+      ```
+
+
 # Loader 
 ## [css-loader](https://webpack.js.org/loaders/css-loader/)
 ### css 파일을 번들링해주는 loader
