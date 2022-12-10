@@ -1,6 +1,18 @@
 # Webpack5
 Study Webpack
 
+
+# concept
+## 웹팩은 모던 자바스크립트를 위한 정적 모듈 번들러이다.
+웹팩이 application을 처리할 때, 웹팩은 하나 혹은 다수의 entry point로부터 의존성 그래프를 만들고, 컨텐츠를 제공하는 정적 자산인 번들들로 프로젝트에 필요한 모든 모듈을 결합시킨다.
+버전 4 이후로, 프로젝트를 번들하기 위해 웹팩은 configuration file을 필요로하지 않는다.
+* Core Concept
+    * Entry
+    * Output
+    * Loaders
+    * Plugins
+    * Mode
+    * Browser Compatibility
 # Loader 
 ## [css-loader](https://webpack.js.org/loaders/css-loader/)
 ### css 파일을 번들링해주는 loader
