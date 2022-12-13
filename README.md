@@ -23,7 +23,21 @@ Entry point는 웹팩이 내부적으로 의존성 그래프를 그리기 위한
            entry: './path/to/my/entry/file.js',
          }; 
       ```
-
+## 3. Output
+Output은 웹팩이 생성한 번들 파일을 내보낼 위치와 파일의 이름 지정 방법을 나타낸다.
+* main output 파일은 ```./dist/main.js``` 그 외 기타 생성된 파일은 ```./dist```폴더 안에 생성이 default값이다.
+* 기본적인 예제 (output.path : 번들 파일을 내보낼 위치 설정, output.filename : 번들 파일 이름 설정
+    * webpack.config.js
+      ```
+      const path = require('path');
+      module.exports = {
+          entry: './path/to/my/entry/file.js',
+          output: {
+              path: path.resolve(__dirname, 'dist'),
+              filename: 'my-first-webpack.bundle.js',
+          },
+      };
+      ```
 
 # Loader 
 ## [css-loader](https://webpack.js.org/loaders/css-loader/)
