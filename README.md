@@ -38,7 +38,8 @@ Output은 웹팩이 생성한 번들 파일을 내보낼 위치와 파일의 이
           },
       };
       ```
-
+## 4. Loader
+웹팩은 기본적으로 javascript와 json 파일을 이해하는데, Loader는 이 외의 파일 유형들을 처리할 수 있고 애플리케이션의 의존성그래프에 추가할 수 있도록 모듈로 변환시켜준다.
 # Loader 
 ## [css-loader](https://webpack.js.org/loaders/css-loader/)
 ### css 파일을 번들링해주는 loader
