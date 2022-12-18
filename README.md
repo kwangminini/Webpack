@@ -40,6 +40,21 @@ Output은 웹팩이 생성한 번들 파일을 내보낼 위치와 파일의 이
       ```
 ## 4. Loader
 웹팩은 기본적으로 javascript와 json 파일을 이해하는데, Loader는 이 외의 파일 유형들을 처리할 수 있고 애플리케이션의 의존성그래프에 추가할 수 있도록 모듈로 변환시켜준다.
+* loader는 두가지 속성(test, use)을 가진다.
+    * ```test``` : 변환해야하는 파일을 식별
+    * ```use``` : 변환에 사용되는 loader를 의미
+* webpack.config.js
+```
+module.exports = {
+  output: {
+    filename: 'my-first-webpack.bundle.js',
+  },
+  module: {
+    rules: [{ test: /\.txt$/, use: 'raw-loader' }],
+  },
+};
+```
+
 # Loader 
 ## [css-loader](https://webpack.js.org/loaders/css-loader/)
 ### css 파일을 번들링해주는 loader
