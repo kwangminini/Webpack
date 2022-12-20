@@ -54,6 +54,23 @@ module.exports = {
   },
 };
 ```
+## 5. Plugins
+Loader는 특정 유형의 모듈을 변환하는데 사용되지만, Plugins는 번들 최적화, 자산 관리 및 환경 변수 주입 등 광범위한 작업을 수행한다.
+Plugin을 사용하기 위해서 ```require()```를 통해 plugin을 가져와서 Plugin 배열에 추가한다. options를 통해 커스터마이징이 가능하다.
+서로 다른 목적의 plugin을 여러번 사용하기 위해 new 연산자로 호출하여 인스턴스를 생성한다.
+* HtmlWebpackPlugin은 애플리케이션을 위한 HTML 파일을 만들고 생성된 모든 번들을 HTML파일에 주입해주는 Plugin.
+* webpack.config.js
+```
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack'); //to access built-in plugins
+
+module.exports = {
+  module: {
+    rules: [{ test: /\.txt$/, use: 'raw-loader' }],
+  },
+  plugins: [new HtmlWebpackPlugin({ template: './src/index.html' })],
+};
+```
 
 # Loader 
 ## [css-loader](https://webpack.js.org/loaders/css-loader/)
