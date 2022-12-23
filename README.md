@@ -71,6 +71,21 @@ module.exports = {
   plugins: [new HtmlWebpackPlugin({ template: './src/index.html' })],
 };
 ```
+## 6. Mode
+모드 매개변수를 ```development``` ```production``` ```none```  세개 중에 선택하며 선택된 환경에 맞춰 webpack의 내장 최적화를 활성화한다.
+default:```production```
+* webpack.config.js
+```
+module.exports = {
+  mode: 'production',
+};
+```
+## 7. Browser Compatibility
+웹팩은 ES5와 호환되는 모든 부라우저를 지원한다 (IE8이하에서는 지원x)
+이전의 브라우저를 호환하려면 polyfill을 load해야 한다.
+
+## 8. Environment
+웹팩 5는 Node.js version 10.13.0+ 에서 지원
 
 # Loader 
 ## [css-loader](https://webpack.js.org/loaders/css-loader/)
