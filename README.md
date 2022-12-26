@@ -87,6 +87,32 @@ module.exports = {
 ## 8. Environment
 웹팩 5는 Node.js version 10.13.0+ 에서 지원
 
+# Entry Points
+## 1) Single Entry Syntax
+Single Entry Syntax는 하나의 진입점이 있는 응용 프로그램이나 빠르게 웹팩 설정할 때 용의하지만, 확장성이 유연하지 않다.
+### multi-main entry
+multi-main entry는 여러 종속 파일을 함께 주입하고 해당 종속성을 하나의 chunk로 의존성을 생성할 수 있다.
+#### webpack.config.js
+```
+module.exports = {
+  entry: ['./src/file_1.js', './src/file_2.js'],
+  output: {
+    filename: 'bundle.js',
+  },
+};
+```
+## 2) Object Syntax
+object syntax는 더 장황하지만 확장성이 유용하다
+#### webpack.config.js
+```
+module.exports = {
+  entry: {
+    app: './src/app.js',
+    adminApp: './src/adminApp.js',
+  },
+};
+```
+
 # Loader 
 ## [css-loader](https://webpack.js.org/loaders/css-loader/)
 ### css 파일을 번들링해주는 loader
