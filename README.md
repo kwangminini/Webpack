@@ -112,6 +112,66 @@ module.exports = {
   },
 };
 ```
+#### EntryDescription object
+* ```dependOn``` : 현재 진입점이 의존하는 진입점. entry point가 load되기 전에 load되어야 한다.
+* ```filename``` : disk에 있는 각 output file의 이름을 명시한다.
+* ```import``` : 시작 시 load되는 모듈.
+* ```library``` : 현재 entry에서 library를 bundle하는 library의 옵션을 명시한다.
+* ```runtime``` : runtime chunk의 이름으로 설정될 때 새 runtime chunk가 생성, webpack 5.43 version부터 새로운 runtime chunk를 피하기위해 false설정 가능
+* ```publicPath``` : 브라우저에서 참조될 때 entry의 output file에 대한 공용 url주소를 지정한다.
+
+```
+module.exports = {
+  entry: {
+    a2: 'dependingfile.js',
+    b2: {
+      dependOn: 'a2',
+      import: './src/app.js',
+    },
+  },
+};
+```
+* ```dependOn```과```runtime```은 같이 설정할 수 없다. (아래의 코드는 에러 발생)
+```
+module.exports = {
+  entry: {
+    a2: './a',
+    b2: {
+      runtime: 'x2',
+      dependOn: 'a2',
+      import: './b',
+    },
+  },
+};
+```
+* ```runtime```은 기존의 entry point 이름을 설정할 수 없다. (아래의 코드는 에러 발생)
+```
+module.exports = {
+  entry: {
+    a1: './a',
+    b1: {
+      runtime: 'a1',
+      import: './b',
+    },
+  },
+};
+```
+* ```dependOn```은 순환적이지 않아야 한다. (아래의 코드는 에러 발생)
+```
+module.exports = {
+  entry: {
+    a3: {
+      import: './a',
+      dependOn: 'b3',
+    },
+    b3: {
+      import: './b',
+      dependOn: 'a3',
+    },
+  },
+};
+```
+
 
 # Loader 
 ## [css-loader](https://webpack.js.org/loaders/css-loader/)
