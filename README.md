@@ -171,11 +171,21 @@ module.exports = {
   },
 };
 ```
-
+- - -
 # [Output](https://webpack.js.org/concepts/output/)
 ## output 구성 설정은 웹팩에 컴파일된 파일을 디스크에 쓰는 방법을 알려준다. entry point는 여러개일 수 있지만 output 구성은 하나만 설정 가능하다.
 ### Multiple Entry Points
 구성이 하나 이상의 "chunk"를 생성하는 경우 (multiple entry points 구조이거나 CommonsChunkPlugin 같은 Plugin을 사용하는 경우) 각 파일이 고유한 이름을 갖도록 설정 가능
+
+## clean
+build시 이전에 생성된 bundle파일을 지우기 위해 webpack4에서 사용되는 CleanWebpackPlugin은 webpack5에서 clean 옵션으로 대체할 수 있다.
+```
+output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "[name].bundle.[hash].js",
+    clean: true,
+  },
+```
 
 # Loader 
 ## [css-loader](https://webpack.js.org/loaders/css-loader/)
