@@ -261,7 +261,8 @@ module.exports = {
       },
     };
     ```
-    
+ 
+ ## babel-loader
  - - - 
  # Plugin
  ## [HtmlWebpackPlugin](https://webpack.js.org/plugins/html-webpack-plugin)
