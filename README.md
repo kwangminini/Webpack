@@ -263,6 +263,26 @@ module.exports = {
     ```
  
  ## babel-loader
+ #### 1. 기본 세팅 방법 (webpack.config.js)
+ ```
+ module: {
+  rules: [
+    {
+      test: /\.m?js$/,
+      exclude: /(node_modules|bower_components)/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env']
+        }
+      }
+    }
+  ]
+}
+ ```
+ #### 2. 주의할 점
+ ``` /\.m?js$/ ``` 같은 매칭 때문에 필요없는 파일(Ex) node_modules 폴더)이 babel-loader에 의해 변환되고 있는지 주의해야 한다.
+ 
  - - - 
  # Plugin
  ## [HtmlWebpackPlugin](https://webpack.js.org/plugins/html-webpack-plugin)
