@@ -282,7 +282,7 @@ module.exports = {
  ```
  #### 2. 주의할 점
  ``` /\.m?js$/ ``` 같은 매칭 때문에 필요없는 파일(Ex) node_modules 폴더)이 babel-loader에 의해 변환되고 있는지 주의해야 한다.
- 
+ 따라서, exclude에 node_modules 등 불필요한 파일 변환 안되도록 설정한다.
  - - - 
  # Plugin
  ## [HtmlWebpackPlugin](https://webpack.js.org/plugins/html-webpack-plugin)
