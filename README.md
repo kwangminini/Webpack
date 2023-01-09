@@ -301,7 +301,7 @@ module.exports = {
       path: path.resolve(__dirname, './dist'),
       filename: 'index_bundle.js',
     },
-    plugins: [new HtmlWebpackPlugin()],
+    plugins: [new HtmlWebpackPlugin({template : public/index.html})],
   };
   ```
  * 위와 같이 세팅한다면 <b> dist/index.html </b> 생성
@@ -320,3 +320,23 @@ module.exports = {
  * webpack entry point가 많아진다면 <script>태그 안에 모두 포함된채로 html 생성
  * MiniCssExtractPlugin에서 추출된 CSS와 같이 webpack의 output에 CSS파일이 있다면 <head>태그 안에 <link>태그로 삽입된다.
  
+ ## MiniCssExtractPlugin
+ ### CSS를 별도의 파일로 추출하고 CSS를 포함하는 JS파일마다 CSS파일을 생성한다.
+ ### css-loader와 같이 사용하는걸 추천한다.
+ 
+ ##### 1. 기본 세팅 (webpack.config.js)
+ ```
+ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+module.exports = {
+  plugins: [new MiniCssExtractPlugin()],
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+    ],
+  },
+};
+ ```
