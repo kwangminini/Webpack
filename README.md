@@ -261,7 +261,29 @@ module.exports = {
       },
     };
     ```
- 
+* modules
+   * Default: ```undefined```
+   * css의 모듈화를 진행해준다. 
+   * ex) 
+         ```
+         import styles.scss from "./styles.scss"
+         <div className={styles.test}>hello</div>
+         ```
+   ```
+   module.exports = {
+      module: {
+        rules: [
+          {
+            test: /\.css$/i,
+            loader: "css-loader",
+            options: {
+              modules: true,
+            },
+          },
+        ],
+      },
+    };
+   ```
  ## babel-loader
  #### 1. 기본 세팅 방법 (webpack.config.js)
  ```
