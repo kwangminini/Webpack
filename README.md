@@ -87,6 +87,8 @@ module.exports = {
 ## 8. Environment
 웹팩 5는 Node.js version 10.13.0+ 에서 지원
 
+## 9. The Manifest
+
 # Entry Points
 ## 1) Single Entry Syntax
 Single Entry Syntax는 하나의 진입점이 있는 응용 프로그램이나 빠르게 웹팩 설정할 때 용의하지만, 확장성이 유연하지 않다.
