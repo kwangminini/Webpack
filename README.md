@@ -307,9 +307,10 @@ module.exports = {
  #### 2. 주의할 점
  ``` /\.m?js$/ ``` 같은 매칭 때문에 필요없는 파일(Ex) node_modules 폴더)이 babel-loader에 의해 변환되고 있는지 주의해야 한다.
  따라서, exclude에 node_modules 등 불필요한 파일 변환 안되도록 설정한다.
+ 
  ## [file-loader](https://v4.webpack.js.org/loaders/file-loader/)
  ### 빌드 시 file을 정해진 규칙의 이름으로 output directory로 내보낸다
- #### 1. 기본 세팅 방법 (webpack.config.js)
+ ##### 1. 기본 세팅 방법 (webpack.config.js)
  ```
  module.exports = {
   module: {
@@ -326,6 +327,13 @@ module.exports = {
   },
 };
  ```
+ ##### 2. options
+ * name
+   * default : ```[contenthash].[ext]```
+   * 파일의 이름을 지정해 줄 수 있다
+ * outputPath
+   * default : ```undefined```
+   * 파일의 위치를 지정해 줄 수 있다
 
  - - - 
  # Plugin
