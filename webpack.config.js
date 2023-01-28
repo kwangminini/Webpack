@@ -12,7 +12,7 @@ module.exports = {
   // },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name].bundle.js",
+    filename: "[name].bundle.[hash].js",
     clean: true,
   },
   module: {
@@ -34,6 +34,14 @@ module.exports = {
             },
           },
         ],
+      },
+      {
+        test: /\.(png|svg)$/,
+        loader: "file-loader",
+        options: {
+          name: "[path][name].[ext]",
+          // outputPath: "images",
+        },
       },
     ],
   },

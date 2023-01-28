@@ -1,7 +1,9 @@
 div {
   color: red;
+  background-color: red;
 }
 
 .test {
   color: blue;
+  background-image: "./images/plus.png";
 }

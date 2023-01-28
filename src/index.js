@@ -1,5 +1,7 @@
 import styles from "./index.css";
 import "./test.css";
+import plusImg from "./images/plus.png";
+import plusSvg from "./images/plus.svg";
 
 function component() {
   const element = document.createElement("div");
