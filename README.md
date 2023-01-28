@@ -87,6 +87,8 @@ module.exports = {
 ## 8. Environment
 웹팩 5는 Node.js version 10.13.0+ 에서 지원
 
+## 9. The Manifest
+
 # Entry Points
 ## 1) Single Entry Syntax
 Single Entry Syntax는 하나의 진입점이 있는 응용 프로그램이나 빠르게 웹팩 설정할 때 용의하지만, 확장성이 유연하지 않다.
@@ -171,7 +173,21 @@ module.exports = {
   },
 };
 ```
+- - -
+# [Output](https://webpack.js.org/concepts/output/)
+## output 구성 설정은 웹팩에 컴파일된 파일을 디스크에 쓰는 방법을 알려준다. entry point는 여러개일 수 있지만 output 구성은 하나만 설정 가능하다.
+### Multiple Entry Points
+구성이 하나 이상의 "chunk"를 생성하는 경우 (multiple entry points 구조이거나 CommonsChunkPlugin 같은 Plugin을 사용하는 경우) 각 파일이 고유한 이름을 갖도록 설정 가능
 
+## clean
+build시 이전에 생성된 bundle파일을 지우기 위해 webpack4에서 사용되는 CleanWebpackPlugin은 webpack5에서 clean 옵션으로 대체할 수 있다.
+```
+output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "[name].bundle.[hash].js",
+    clean: true,
+  },
+```
 
 # Loader 
 ## [css-loader](https://webpack.js.org/loaders/css-loader/)
@@ -192,7 +208,7 @@ module.exports = {
 ```
 * style-loader와 같이 쓰이는 이유
    * style-loader가 css를 DOM에 주입시켜준다. 즉, html의 style 태그 안에 css 주입시켜준다.
-
+ 
 ##### 2. Options
 * Url
     * Default : true
@@ -247,7 +263,78 @@ module.exports = {
       },
     };
     ```
-    
+* modules
+   * Default: ```undefined```
+   * css의 모듈화를 진행해준다. 
+   * ex) 
+         ```
+         import styles.scss from "./styles.scss"
+         <div className={styles.test}>hello</div>
+         ```
+   ```
+   module.exports = {
+      module: {
+        rules: [
+          {
+            test: /\.css$/i,
+            loader: "css-loader",
+            options: {
+              modules: true,
+            },
+          },
+        ],
+      },
+    };
+   ```
+ ## babel-loader
+ #### 1. 기본 세팅 방법 (webpack.config.js)
+ ```
+ module: {
+  rules: [
+    {
+      test: /\.m?js$/,
+      exclude: /(node_modules|bower_components)/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env']
+        }
+      }
+    }
+  ]
+}
+ ```
+ #### 2. 주의할 점
+ ``` /\.m?js$/ ``` 같은 매칭 때문에 필요없는 파일(Ex) node_modules 폴더)이 babel-loader에 의해 변환되고 있는지 주의해야 한다.
+ 따라서, exclude에 node_modules 등 불필요한 파일 변환 안되도록 설정한다.
+ 
+ ## [file-loader](https://v4.webpack.js.org/loaders/file-loader/)
+ ### 빌드 시 file을 정해진 규칙의 이름으로 output directory로 내보낸다
+ ##### 1. 기본 세팅 방법 (webpack.config.js)
+ ```
+ module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
+    ],
+  },
+};
+ ```
+ ##### 2. options
+ * name
+   * default : ```[contenthash].[ext]```
+   * 파일의 이름을 지정해 줄 수 있다
+ * outputPath
+   * default : ```undefined```
+   * 파일의 위치를 지정해 줄 수 있다
+
  - - - 
  # Plugin
  ## [HtmlWebpackPlugin](https://webpack.js.org/plugins/html-webpack-plugin)
@@ -266,7 +353,7 @@ module.exports = {
       path: path.resolve(__dirname, './dist'),
       filename: 'index_bundle.js',
     },
-    plugins: [new HtmlWebpackPlugin()],
+    plugins: [new HtmlWebpackPlugin({template : public/index.html})],
   };
   ```
  * 위와 같이 세팅한다면 <b> dist/index.html </b> 생성
@@ -285,3 +372,23 @@ module.exports = {
  * webpack entry point가 많아진다면 <script>태그 안에 모두 포함된채로 html 생성
  * MiniCssExtractPlugin에서 추출된 CSS와 같이 webpack의 output에 CSS파일이 있다면 <head>태그 안에 <link>태그로 삽입된다.
  
+ ## MiniCssExtractPlugin
+ ### CSS를 별도의 파일로 추출하고 CSS를 포함하는 JS파일마다 CSS파일을 생성한다.
+ ### css-loader와 같이 사용하는걸 추천한다.
+ 
+ ##### 1. 기본 세팅 (webpack.config.js)
+ ```
+ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+module.exports = {
+  plugins: [new MiniCssExtractPlugin()],
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+    ],
+  },
+};
+ ```
